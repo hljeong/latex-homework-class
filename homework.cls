@@ -53,3 +53,5 @@
     \today
   \end{center}
 }
+
+\AtBeginDocument{\maketitle}
