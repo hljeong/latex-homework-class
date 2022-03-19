@@ -23,7 +23,8 @@
 % ==================== Variables ==================== %
 
 \newcommand{\var}[2]{                                                          % ok now this is definitely hacking
-  \expandafter\newcommand\expandafter{\csname #1\endcsname}[1]{\expandafter\renewcommand\expandafter{\csname @#1\endcsname}{##1}}
+  \expandafter\newcommand\expandafter{\csname #1\endcsname}[1]
+    {\expandafter\renewcommand\expandafter{\csname @#1\endcsname}{##1}}
   \expandafter\newcommand\expandafter{\csname @#1\endcsname}{#2}
 }
 
