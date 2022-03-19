@@ -22,17 +22,34 @@
 
 % ==================== Header ==================== %
 
-\newcommand{\class}[1]{\renewcommand{\@class}{#1}}
+\newcommand{\class}[1]{\renewcommand{\@class}{#1}}                             % declaring variables... feels like hacking
 \newcommand{\@class}{Class}
 
-\newcommand{\hw}[1]{\renewcommand{\@num}{#1}}
+\newcommand{\type}[1]{\renewcommand{\@type}{#1}}
+\newcommand{\@type}{Homework}
+
+\newcommand{\num}[1]{\renewcommand{\@num}{#1}}
 \newcommand{\@num}{\#}
 
 \newcommand{\name}[1]{\renewcommand{\@name}{#1}}
 \newcommand{\@name}{Name}
 
-\pagestyle{fancy}
+\pagestyle{fancy}                                                              % fancy = good :sunglasses:
 
-\lhead{\@class{}}
-\chead{Homework \@num{}}
+\lhead{\@class{}}                                                              % actual header content
+\chead{\@type{} \@num{}}
 \rhead{\@name{}}
+
+% ==================== Title ==================== %
+
+\renewcommand{\maketitle}{
+  \thispagestyle{plain}                                                        % no header on this page
+  
+  \begin{center}
+    { \Large \@class{}: \@type{} \@num{} }
+
+    \@name{}
+
+    \today
+  \end{center}
+}
