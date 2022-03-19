@@ -20,19 +20,19 @@
 
 \RequirePackage{hyperref}                                                      % for links
 
+% ==================== Variables ==================== %
+
+\newcommand{\var}[2]{                                                          % ok now this is definitely hacking
+  \expandafter\newcommand\expandafter{\csname #1\endcsname}[1]{\expandafter\renewcommand\expandafter{\csname @#1\endcsname}{##1}}
+  \expandafter\newcommand\expandafter{\csname @#1\endcsname}{#2}
+}
+
+\var{class}{Class}
+\var{type}{Homework}
+\var{num}{\#}
+\var{name}{Name}
+
 % ==================== Header ==================== %
-
-\newcommand{\class}[1]{\renewcommand{\@class}{#1}}                             % declaring variables... feels like hacking
-\newcommand{\@class}{Class}
-
-\newcommand{\type}[1]{\renewcommand{\@type}{#1}}
-\newcommand{\@type}{Homework}
-
-\newcommand{\num}[1]{\renewcommand{\@num}{#1}}
-\newcommand{\@num}{\#}
-
-\newcommand{\name}[1]{\renewcommand{\@name}{#1}}
-\newcommand{\@name}{Name}
 
 \pagestyle{fancy}                                                              % fancy = good :sunglasses:
 
