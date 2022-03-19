@@ -19,3 +19,20 @@
 \RequirePackage{fancyhdr}                                                      % for header
 
 \RequirePackage{hyperref}                                                      % for links
+
+% ==================== Header ==================== %
+
+\newcommand{\class}[1]{\renewcommand{\@class}{#1}}
+\newcommand{\@class}{Class}
+
+\newcommand{\hw}[1]{\renewcommand{\@num}{#1}}
+\newcommand{\@num}{\#}
+
+\newcommand{\name}[1]{\renewcommand{\@name}{#1}}
+\newcommand{\@name}{Name}
+
+\pagestyle{fancy}
+
+\lhead{\@class{}}
+\chead{Homework \@num{}}
+\rhead{\@name{}}
