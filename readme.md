@@ -29,8 +29,11 @@ see [`homework.tex`](homework.tex) for a brief overview of the usage
 
 ### basic information
 use `\class{<classname>}` to edit the name of the class, 
+
 use `\type{<type>}` to edit the type of the assignment ("Homework" by default), 
+
 use `\num{<number>}` to edit the assignment number, and 
+
 use `\name{<name>}` to edit the name to be displayed
 
 the visibility of each of these is not optional... yet
@@ -50,6 +53,7 @@ to typeset subproblems, follow this structure:
 ```
 
 the labeling for problems are in arabic numerals and that for subproblems are in lower case alphabet by default
+
 to change these, use `\problemLabelStyle{<style>}` and `\subproblemLabelStyle{<style>}` where `<style>` is any of 
 - `arabic`, 
 - `roman`, 
