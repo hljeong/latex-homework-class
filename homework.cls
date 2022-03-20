@@ -20,25 +20,38 @@
 
 \RequirePackage{hyperref}                                                       % for links
 
+\RequirePackage{microtype}                                                          % for good spacing
+
 \RequirePackage{xifthen}                                                        % for conditionals and `\isempty`
 
 % ==================== Page Setup ==================== %
 
 \linespread{1.2}                                                                % this is more comfortable
 \setlength{\parindent}{0pt}                                                     % dont need em
+\setlength{\parskip}{0.8ex}                                                     % wow i didnt know default for `\parskip` was 0
 
 % ==================== Variables ==================== %
 
 \newcommand{\var}[2]{                                                           % ok now this is definitely hacking
-  \expandafter\providecommand\expandafter{\csname #1\endcsname}[1]
+  \expandafter\providecommand\expandafter{\csname #1\endcsname}[1]%
     {\expandafter\renewcommand\expandafter{\csname @#1\endcsname}{##1}}
   \expandafter\providecommand\expandafter{\csname @#1\endcsname}{#2}
+}
+
+\newcommand{\varcommand}[2]{
+  \expandafter\providecommand\expandafter{\csname #1\endcsname}[1]%
+    {\expandafter\renewcommand\expandafter{\csname @#1\endcsname}%
+    {\csname ##1\endcsname}}
+  \expandafter\providecommand\expandafter{\csname @#1\endcsname}%
+    {\csname #2\endcsname}
 }
 
 \var{class}{Class}
 \var{type}{Homework}
 \var{num}{\#}
 \var{name}{Name}
+\varcommand{problemLabelStyle}{arabic}
+\varcommand{subproblemLabelStyle}{alph}
 
 % ==================== Header ==================== %
 
@@ -67,6 +80,7 @@
 % ==================== Problem ==================== %
 
 \newcounter{problem_counter}                                                    % snake case or camel case?
+\newcounter{subproblem_counter}[problem_counter]
 
 \providecommand{\problem}[1][]{
   \stepcounter{problem_counter}
@@ -77,15 +91,42 @@
   
   { 
     \large 
-    \textbf{Problem \arabic{problem_counter}\ifthenelse{\isempty{#1}}{}{ (#1)}.}
+    \textbf{Problem \@problemLabelStyle{problem_counter}%
+      \ifthenelse{\isempty{#1}}{}{ (#1)}.}
   }
-  \newline                                                                      % problem statement on a new line
+  
+  % problem statement on a new line
+}
+
+\providecommand{\subproblemLabel}{
+  \ifthenelse{
+    \equal{\@problemLabelStyle{problem_counter}}{\arabic{problem_counter}}%   % special case when both problem counter and subproblem counter are arabic... woah this is ugly
+    \AND \equal{\@subproblemLabelStyle{subproblem_counter}}%
+    {\arabic{subproblem_counter}}}{
+    \textbf{\arabic{problem_counter}.\arabic{subproblem_counter}}
+  }{
+    \textbf{(\@subproblemLabelStyle{subproblem_counter})}
+  }
+}
+
+\newenvironment{subproblems}{
+  \begin{enumerate}[label = \protect \subproblemLabel]
+}{
+  \end{enumerate}
+}
+
+\providecommand{\subproblem}{
+  \stepcounter{subproblem_counter}
+
+  \vspace{1.5ex}                                                                % social distancing
+  
+  \item
 }
 
 % ==================== Solution ==================== %
 
 \providecommand{\solution}{
   \vspace{1.5ex}                                                                % need a bit of space
-  \textbf{Solution.}
+  \textbf{\textit{Solution.}}
   \newline                                                                      % solution on a new line
 }

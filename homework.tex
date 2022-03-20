@@ -1,15 +1,138 @@
 \documentclass{homework}
 
 \class{MATH 131AH (Real Analysis)}
-\num{1}
+\num{6}
 \name{Lucas Jeong}
 
 \begin{document}
 
-\problem This is the first problem.
+\problem An ultrametric on $X$ is a metric $\rho$ on $X$ such that 
+\[
+  \forall \, x, y, z \in X: \rho(x, y) \leq
+    \max \left \{ \rho(x, z), \rho(y, z) \right \}.
+\] 
+Prove that, in this metric, every open ball 
+$B(x, r) := \left \{ y \in X ~ : ~ \rho(x, y) < r \right \}$ is closed 
+and every closed ball $B'(x, r) := \left \{ y \in X ~ : ~ 
+j\rho(x, y) \leq r \right \}$ is open.
+Determine the topological boundary $\partial B(x, r)$ of $B(x, r)$.
 
-\solution This is the solution to the first problem.
+To give an example of such a setting, let $X := \left \{ 0, 1 \right \}^
+{\mathbb N}$.
+Prove that then $\rho : X \times X \to \mathbb R$ defined for 
+$\sigma, \sigma' \in X$ with $\sigma \neq \sigma'$ by 
+\[
+  \rho(\sigma, \sigma') := %
+    2^{-\inf\left \{ k \in \mathbb N ~ : ~ \sigma(k) \neq \sigma'(k) \right \}}
+\]
+(and by $\rho(\sigma, \sigma) := 0$) is an ultrametric.
 
-\problem[Named problem] This is not the first problem.
+  \solution Note that for all $y \in X \setminus B(x, r)$ there is 
+    $\rho(x, y) \geq r$.
+  Then for all $z \in B(y, r)$ there is $\rho(x, y) \leq 
+    \max\left \{ \rho(x, z), \rho(z, y) \right \}$.
+  Since $\rho(z, y) < r \leq \rho(x, y)$, there must be 
+    $\rho(x, z) \geq \rho(x, y) \geq r$.
+  Then $z \in X \setminus B(x, r)$.
+  Then $X \setminus B(x, r)$ is open and $B(x, r)$ is closed.
+    
+  Note that $\partial B(x, r) = \left \{ b \in X ~ : ~ 
+    \forall r > 0: B(x, r) \cap B(b, r) \neq  \varnothing \wedge 
+    B(b, r) \setminus B(x, r) \neq \varnothing \right \}$. \\ 
+  Suppose $b \in \partial B(x, r)$.
+  Then there exists $y \in X$ such that $\rho(x, y) < r$ and $\rho(b, y) < r$.
+  There also exists $z \in X$ such that $\rho(z, b) < r$ and 
+    $\rho(z, x) \leq r$.
+  However, there is $\rho(z, x) \leq 
+    \max\left \{ \rho(z, b), \rho(b, x) \right \} = 
+    \max\left \{ \rho(z, b), \rho(b, y), \rho(y, x) \right \} < r$, 
+    resulting in a contradiction.
+  Then $\partial B(x, r) = \varnothing$.
+  
+  Note that exponential functions are positive over $\mathbb R$.
+  Then $\rho(\sigma, \sigma') \geq 0$ and equality holds only when 
+    $\sigma = \sigma'$.
+
+  Since inequality is symmetric ($\sigma(k) \neq \sigma'(k) \Leftrightarrow 
+    \sigma'(k) \neq \sigma(k)$), $\rho$ is symmetric.
+
+  Suppose for the sake of contradiction that for some $\sigma, \sigma', 
+    \sigma'' \in X$, $\rho(\sigma, \sigma'') > 
+    \max\left \{ \rho(\sigma, \sigma'), \rho(\sigma', \sigma'') \right \}$.
+  Let $i = \inf\left \{ k \in \mathbb N ~ : ~ \sigma(k) \neq 
+    \sigma''(k) \right \}$, $j = \inf\left \{ k \in \mathbb N ~ : ~ 
+    \sigma(k) \neq \sigma'(k) \right \}$, and $l = 
+    \inf\left \{ k \in \mathbb N ~ : ~ \sigma'(k) \neq \sigma''(k) \right \}$.
+  Then $i < j$ and $i < k$.
+  Then $\sigma(k) = \sigma'(k) = \sigma''(k)$ for all $k = 1, \dots, 
+    \min\left \{ j, l \right \}$ and $i$ is not the greatest lower bound of 
+    $\left \{ k \in \mathbb N ~ : ~ \sigma(k) \neq \sigma''(k) \right \}$, 
+   resulting in a contradiction.
+ Then $\rho(\sigma, \sigma'') \leq \max\left \{ \rho(\sigma, \sigma'), 
+  \rho(\sigma', \sigma'') \right \} \leq \rho(\sigma, \sigma') + 
+  \rho(\sigma', \sigma'')$.
+  
+  Then $\rho$ is an ultrametric on $X$.
+
+
+\problem[Baby Rudin p.43 exercise 9] Let $E^\circ$ denote the set of all interior points of a set $E$. 
+
+\begin{subproblems}
+  \subproblem Prove that $E^\circ$ is always open.
+
+    \solution $E^\circ$ is open by definition: 
+    for all $x \in E^\circ$ there exists $r > 0$ such that 
+    $B(x, r) \subseteq A$.
+
+  \subproblem Prove that $E$ is open if and only if $E^\circ = E$.
+  
+    \solution If $E = E^\circ$ then $E$ is clearly open.
+
+    If $E$ is open then for all $x \in E$ there exists $r > 0$ such that 
+      $B(x, r) \subseteq E$.
+    Then $x \in E^\circ$.
+    Then $E \subseteq E^\circ$.
+    For all $x \in E^\circ$, there exists $r > 0$ such that 
+      $B(x, r) \subseteq E$.
+    Then $x \in E$.
+    Then $E^\circ \subseteq E$.
+    Then $E = E^\circ$.
+
+  \subproblem If $G \subseteq E$ and $G$ is open, prove that 
+  $G \subseteq E^\circ$.
+  
+    \solution Suppose $G$ is open and $G \subseteq E$.
+    Then for all $x \in G$ there exists $r > 0$ such that 
+      $B(x, r) \subseteq G \subseteq E$.
+    Then $x \in E^\circ$.
+
+  \subproblem Prove that the complement of $E^\circ$ is the closure 
+  of the complement of $E$.
+  
+    \solution Note that since for all open subsets $G \subseteq E$ there 
+      is $G \subseteq E^\circ$, 
+      $E^\circ = \bigcup \left \{ G \subseteq E ~ : ~ 
+      G \text{ is open} \right \}$.
+    Then, by De Morgan's law, there is $X \setminus E^\circ = \bigcap 
+      \left \{ X \setminus G ~ : ~ 
+      G \subseteq E \wedge G \text{ is open} \right \} = \\
+      \bigcap \left \{ F \subseteq X ~ : ~ 
+      X \setminus E \subseteq F \wedge F \text{ is closed} \right \} = 
+      \overline{X \setminus E}$.
+
+  \subproblem Do $E$ and $\overline E$ always have the same interiors?
+  
+    \solution No.
+    Let $X = \mathbb R$ and $E = \mathbb Q$.
+    Note that $E^\circ = \varnothing$ while $\overline E = \mathbb R$ and 
+      $\overline E^\circ = \mathbb R$.
+
+  \subproblem Do $E$ and $E^\circ$ always have the same closures?
+  
+    \solution No.
+    Let $X = \mathbb R$ and $E = \mathbb Q$.
+    Note that $\overline E = \mathbb R$ while $E^\circ = \varnothing$ and
+      $\overline{E^\circ} = \varnothing$.
+\end{subproblems}
 
 \end{document}
