@@ -105,8 +105,8 @@
   \ifthenelse{
     \equal{\@problemLabelStyle{problem_counter}}{\arabic{problem_counter}}%     % special case when both problem counter and subproblem counter are arabic... woah this is ugly
       \AND \equal{\@subproblemLabelStyle{subproblem_counter}}%
-      {\arabic{subproblem_counter}}}{
-    \textbf{\arabic{problem_counter}.\arabic{subproblem_counter}}
+      {\arabic{subproblem_counter}}}%
+      {\textbf{\arabic{problem_counter}.\arabic{subproblem_counter}}
   }{
     \textbf{(\@subproblemLabelStyle{subproblem_counter})}
   }
