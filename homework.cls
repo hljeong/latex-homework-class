@@ -81,3 +81,11 @@
   }
   \newline                                                                      % problem statement on a new line
 }
+
+% ==================== Solution ==================== %
+
+\providecommand{\solution}{
+  \vspace{1.5ex}                                                                % need a bit of space
+  \textbf{Solution.}
+  \newline                                                                      % solution on a new line
+}
