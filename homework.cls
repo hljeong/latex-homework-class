@@ -20,7 +20,9 @@
 
 \RequirePackage{hyperref}                                                       % for links
 
-\RequirePackage{microtype}                                                          % for good spacing
+\RequirePackage{microtype}                                                      % for good spacing
+
+\RequirePackage{xcolor}                                                         % for colors
 
 \RequirePackage{xifthen}                                                        % for conditionals and `\isempty`
 
@@ -50,6 +52,7 @@
 \var{type}{Homework}
 \var{num}{\#}
 \var{name}{Name}
+\var{solutionColor}{black}
 \varcommand{problemLabelStyle}{arabic}
 \varcommand{subproblemLabelStyle}{alph}
 
@@ -127,6 +130,6 @@
 
 \providecommand{\solution}{
   \vspace{1.5ex}                                                                % need a bit of space
-  \textbf{\textit{Solution.}}
+  { \color{\@solutionColor} \textbf{\textit{Solution.}}}
   \newline                                                                      % solution on a new line
 }

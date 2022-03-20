@@ -60,3 +60,5 @@ to change these, use `\problemLabelStyle{<style>}` and `\subproblemLabelStyle{<s
 
 ### `\solution`
 use `\solution` to indicate the beginning of your solution to a problem
+
+optionally use `\solutionColor{<color>}` to highlight the `\solution` (i use red)
