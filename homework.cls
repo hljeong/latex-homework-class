@@ -2,7 +2,7 @@
 \LoadClassWithOptions{article}                                                  % load? or not? with options? or not?
 \ProvidesClass{homework}[2022/03/20 Homework class]
 
-% ==================== Packages ==================== %
+% ==================== packages ==================== %
 
 \RequirePackage[T1]{fontenc}                                                    % so fonts/accents work? idk
 \RequirePackage[utf8]{inputenc}                                                 % dont know what exactly this does either
@@ -26,13 +26,13 @@
 
 \RequirePackage{xifthen}                                                        % for conditionals and `\isempty`
 
-% ==================== Page Setup ==================== %
+% ==================== page setup ==================== %
 
 \linespread{1.2}                                                                % this is more comfortable
 \setlength{\parindent}{0pt}                                                     % dont need em
 \setlength{\parskip}{0.8ex}                                                     % wow i didnt know default for `\parskip` was 0
 
-% ==================== Variables ==================== %
+% ==================== variables ==================== %
 
 \newcommand{\var}[2]{                                                           % ok now this is definitely hacking
   \expandafter\providecommand\expandafter{\csname #1\endcsname}[1]%
@@ -56,7 +56,7 @@
 \varcommand{problemLabelStyle}{arabic}
 \varcommand{subproblemLabelStyle}{alph}
 
-% ==================== Header ==================== %
+% ==================== header ==================== %
 
 \pagestyle{fancy}                                                               % fancy = good :sunglasses:
 
@@ -64,7 +64,7 @@
 \chead{\@type{} \@num{}}
 \rhead{\@name{}}
 
-% ==================== Title ==================== %
+% ==================== title ==================== %
 
 \renewcommand{\maketitle}{
   \thispagestyle{plain}                                                         % no header on this page
@@ -80,7 +80,7 @@
 
 \AtBeginDocument{\maketitle}                                                    % force make title at top of document
 
-% ==================== Problem ==================== %
+% ==================== problem ==================== %
 
 \newcounter{problem_counter}                                                    % snake case or camel case?
 \newcounter{subproblem_counter}[problem_counter]
@@ -126,7 +126,7 @@
   \item
 }
 
-% ==================== Solution ==================== %
+% ==================== solution ==================== %
 
 \providecommand{\solution}{
   \vspace{1.5ex}                                                                % need a bit of space
