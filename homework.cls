@@ -29,6 +29,12 @@
 \linespread{1.2}                                                                % this is more comfortable
 \setlength{\parindent}{0pt}                                                     % dont need em
 \setlength{\parskip}{0.8ex}                                                     % wow i didnt know default for `\parskip` was 0
+\let \olditemize \itemize
+\let \endolditemize \enditemize
+\renewenvironment{itemize}{\begin{olditemize}[topsep = 0pt]}{\end{olditemize}}
+\let \oldenumerate \enumerate
+\let \endoldenumerate \endenumerate
+\renewenvironment{enumerate}{\begin{oldenumerate}[topsep = 0ex]}{\end{oldenumerate}}
 
 % ==================== variables ==================== %
 
@@ -111,15 +117,13 @@
 }
 
 \newenvironment{subproblems}{
-  \begin{enumerate}[label = \protect \subproblemLabel]
+  \begin{oldenumerate}[topsep = 0ex, itemsep = 0ex, label = \protect \subproblemLabel]
 }{
-  \end{enumerate}
+  \end{oldenumerate}
 }
 
 \providecommand{\subproblem}{
   \stepcounter{subproblem_counter}
-
-  \vspace{1.5ex}                                                                % social distancing
   
   \item
 }
