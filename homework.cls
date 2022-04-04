@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}                                                        % what even is 2e
 \LoadClassWithOptions{article}                                                  % load? or not? with options? or not?
-\ProvidesClass{homework}[2022/04/01 Homework class]
+\ProvidesClass{homework}[2022/04/04 Homework class]
 
 % ==================== packages ==================== %
 
@@ -56,6 +56,7 @@
 \var{type}{Homework}
 \var{num}{\#}
 \var{name}{Name}
+\var{problemLabel}{Problem}
 \var{solutionColor}{black}
 \varcommand{problemLabelStyle}{arabic}
 \varcommand{subproblemLabelStyle}{alph}
@@ -98,7 +99,7 @@
   
   { 
     \large 
-    \textbf{Problem \@problemLabelStyle{problem_counter}%
+    \textbf{\@problemLabel~\@problemLabelStyle{problem_counter}%
       \ifthenelse{\isempty{#1}}{}{ (#1)}.}
   }
   
