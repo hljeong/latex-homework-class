@@ -134,5 +134,5 @@
 \providecommand{\solution}{
   \vspace{1.5ex}                                                                % need a bit of space
   { \color{\@solutionColor} \textbf{\textit{Solution.}}}
-  \newline\relax                                                                % solution on a new line
+
 }
