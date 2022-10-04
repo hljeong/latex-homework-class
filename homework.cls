@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}                                                        % what even is 2e
 \LoadClassWithOptions{article}                                                  % load? or not? with options? or not?
-\ProvidesClass{homework}[2022/04/04 Homework class]
+\ProvidesClass{homework}[2022/10/04 Homework class]
 
 % ==================== packages ==================== %
 
@@ -22,7 +22,8 @@
 \RequirePackage{tikz-cd}
 \usetikzlibrary{arrows, automata, positioning}
 \RequirePackage{pgfplots}
-\pgfplotsset{compat = 1.17}
+\pgfplotsset{compat = 1.16}
+\RequirePackage{mleftright}
 
 % ==================== page setup ==================== %
 
@@ -56,17 +57,21 @@
 \var{type}{Homework}
 \var{num}{\#}
 \var{name}{Name}
+\var{topic}{}
 \var{problemLabel}{Problem}
 \var{solutionColor}{black}
 \varcommand{problemLabelStyle}{arabic}
 \varcommand{subproblemLabelStyle}{alph}
+
+\providecommand{@empty}{}
 
 % ==================== header ==================== %
 
 \pagestyle{fancy}                                                               % fancy = good :sunglasses:
 
 \lhead{\@class{}}                                                               % actual header content
-\chead{\@type{} \@num{}}
+\chead{\@type{} \@num{}%
+  \ifthenelse{\equal{\@topic{}}{\@empty{}}}{}{ - \@topic{}}}
 \rhead{\@name{}}
 
 % ==================== title ==================== %
@@ -75,7 +80,8 @@
   \thispagestyle{plain}                                                         % no header on this page
   
   \begin{center}
-    { \Large \@class{}: \@type{} \@num{} }
+    { \Large \@class{}: \@type{} \@num{}%
+      \ifthenelse{\equal{\@topic{}}{\@empty{}}}{}{ - \@topic{}} }
 
     \@name{}
 
